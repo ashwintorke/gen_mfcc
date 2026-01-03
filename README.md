@@ -1,4 +1,11 @@
-# Welcome to GenMFCC
+# 🟠 GenMFCC
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://genmfcc.streamlit.app)
+![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
+
+---
 
 An interactive web application built with **Streamlit** and **Librosa** that explores the boundaries of audio feature extraction and reconstruction.
 
@@ -24,6 +31,14 @@ By using the **Griffin-Lim algorithm** to reconstruct the audio from these coeff
 - **Librosa** (Digital Signal Processing)
 - **Matplotlib** (Data Visualization)
 - **NumPy** (Mathematical Operations)
+
+### 📦 Key Dependencies
+| Library | Purpose |
+| :--- | :--- |
+| **Librosa** | Audio analysis & MFCC extraction |
+| **Streamlit** | Web interface & interactivity |
+| **NumPy** | Array processing for audio buffers |
+| **SoundFile** | Audio file I/O support |
 
 # Local Setup
 
