@@ -11,7 +11,6 @@ This project uses **Mel-Frequency Cepstral Coefficients (MFCCs)** to create a sp
 By using the **Griffin-Lim algorithm** to reconstruct the audio from these coefficients, we create a "Ghost" version of the original track. It sounds like a robotic, whispering version of the source because the computer is "guessing" the missing information based only on the spectral shapes.
 
 
-
 ## Features
 - **Real-time Processing:** Upload any `.wav` or `.mp3` file.
 - **Dynamic MFCC Control:** Adjust the number of coefficients to see how it affects audio clarity.
@@ -31,7 +30,7 @@ By using the **Griffin-Lim algorithm** to reconstruct the audio from these coeff
 # 1. Clone the Repository
 Open your terminal and run:
 ```bash
-git clone [https://github.com/ashwintorke/gen_mfcc.git](https://github.com/ashwintorke/gen_mfcc.git)
+git clone https://github.com/ashwintorke/gen_mfcc.git
 cd ghost-audio-app
 
 # 2. Create a virtual environment
