@@ -1,4 +1,4 @@
-# Welcome to gen_mfcc
+# Welcome to GenMFCC
 
 An interactive web application built with **Streamlit** and **Librosa** that explores the boundaries of audio feature extraction and reconstruction.
 
@@ -25,9 +25,9 @@ By using the **Griffin-Lim algorithm** to reconstruct the audio from these coeff
 - **Matplotlib** (Data Visualization)
 - **NumPy** (Mathematical Operations)
 
-## Local Setup
+# Local Setup
 
-# 1. Clone the Repository
+## 1. Clone the Repository
 Open your terminal and run:
 ```
 bash
@@ -35,26 +35,26 @@ git clone https://github.com/ashwintorke/gen_mfcc.git
 cd ghost-audio-app
 ```
 
-# 2. Create a virtual environment
-# For MacOS/Linux:
+## 2. Create a virtual environment
+### For MacOS/Linux:
 ```
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-# For Windows:
+### For Windows:
 ```
 python -m venv venv
 # .\venv\Scripts\activate
 ```
 
-# 3. Install required packages
+## 3. Install required packages
 ```
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-# 4. Run the application
+## 4. Run the application
 ```
 streamlit run app.py
 ```
