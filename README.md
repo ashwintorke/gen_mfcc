@@ -29,34 +29,29 @@ By using the **Griffin-Lim algorithm** to reconstruct the audio from these coeff
 
 # 1. Clone the Repository
 Open your terminal and run:
-```
-bash
+```bash
 git clone https://github.com/ashwintorke/gen_mfcc.git
 cd ghost-audio-app
 ```
 
 # 2. Create a virtual environment
 # For MacOS/Linux:
-```
-python3 -m venv venv
+```python3 -m venv venv
 source venv/bin/activate
 ```
 
 # For Windows:
-```
-python -m venv venv
+```python -m venv venv
 # .\venv\Scripts\activate
 ```
 
 # 3. Install required packages
-```
-pip install --upgrade pip
+```pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
 # 4. Run the application
-```
-streamlit run app.py
+```streamlit run app.py
 ```
 
 Note for Linux Users: If you encounter errors related to sndfile, install the underlying C-library using:
