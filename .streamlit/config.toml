@@ -9,7 +9,7 @@ backgroundColor = "#141414ff"
 secondaryBackgroundColor = "#1a1a1aff"
 
 # The main text color
-textColor = "#ffe0d5ff"
+textColor = "#c6c6c6ff"
 
 # The font style
-font = "monospace"
+font = "sans-serif"
