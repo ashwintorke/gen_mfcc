@@ -1,9 +1,8 @@
 # 🟠 GenMFCC
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://genmfcc.streamlit.app)
-![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
+![Python Version](https://img.shields.io/badge/python-3.14.0-blue?logo=python&logoColor=white)
+
 
 ---
 
