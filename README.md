@@ -21,7 +21,8 @@ By using the **Griffin-Lim algorithm** to reconstruct the audio from these coeff
 - **Real-time Processing:** Upload any `.wav` or `.mp3` file.
 - **Dynamic MFCC Control:** Adjust the number of coefficients to see how it affects audio clarity.
 - **Iterative Reconstruction:** Control the Griffin-Lim algorithm to improve reconstruction quality.
-- **Visual Mapping:** View high-resolution MFCC spectrograms of your audio.
+- **Interactive Visualization Tuning:** - **Custom Colormaps:** Switch between *Magma, Plasma, Cool, Winter,* and more.
+    - **Contrast Control:** Fine-tune `vmin` and `vmax` via the sidebar to "crush the blacks" or boost the neon glow of the spectrogram.
 - **Downloadable Results:** Save your "Ghost" reconstructions directly to your device.
 
 ## Tech Stack
@@ -31,7 +32,7 @@ By using the **Griffin-Lim algorithm** to reconstruct the audio from these coeff
 - **Matplotlib** (Data Visualization)
 - **NumPy** (Mathematical Operations)
 
-### 📦 Key Dependencies
+### Key Dependencies
 | Library | Purpose |
 | :--- | :--- |
 | **Librosa** | Audio analysis & MFCC extraction |

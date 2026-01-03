@@ -19,8 +19,8 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 st.markdown("""
-Extract the **MFCC fingerprint** of your audio and reconstruct it using the **Griffin-Lim algorithm**. 
-The result is a 'ghostly' version containing only the vocal tract shapes and textures.
+This tool allows you to extract the **MFCC fingerprint** of your audio and reconstruct it using the **Griffin-Lim algorithm**. 
+It is intended to be a learning tool to explore how MFCCs capture the vocal tract characteristics of sound.
 """)
 
 # --- CACHED LOGIC ---
@@ -57,6 +57,33 @@ n_mfcc = st.sidebar.slider("MFCC Coefficients", 1, 80,
 n_iter = st.sidebar.slider("Griffin-Lim Iterations",
                            16, 128, 32, help="More iterations = cleaner sound")
 
+
+st.sidebar.header("Visualization Settings")
+
+# Choose the color palette
+cmap_option = st.sidebar.selectbox(
+    "Select Color Palette",
+    ["magma", "plasma", "cool", "winter", "viridis", "mako"]
+)
+
+# Contrast Sliders
+# We use a range that typically fits MFCC decibel scales
+v_min = st.sidebar.slider(
+    "Darkness Cutoff (vmin)",
+    min_value=-100,
+    max_value=0,
+    value=-40,
+    help="Higher values make the background darker/cleaner."
+)
+
+v_max = st.sidebar.slider(
+    "Neon Intensity (vmax)",
+    min_value=0,
+    max_value=100,
+    value=20,
+    help="Lower values make the 'glow' more intense."
+)
+
 # --- MAIN INTERFACE ---
 uploaded_file = st.file_uploader(
     "Upload a WAV or MP3 file", type=["wav", "mp3"])
@@ -68,16 +95,69 @@ if uploaded_file:
     # Run processing
     mfccs, sr, ghost_buffer = generate_ghost_audio(file_bytes, n_mfcc, n_iter)
 
+    # Display Visuals
+    st.divider()
+    st.markdown("##### MFCC Spectrogram")
+
+    # --- Plotting the MFCC ---
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Apply the Cyberpunk background to the plot figure
+    fig.patch.set_facecolor('#141414ff')
+    ax.set_facecolor('#c6c6c6ff')
+
+    img = librosa.display.specshow(
+        mfccs,
+        x_axis='time',
+        sr=sr,
+        ax=ax,
+        cmap=cmap_option,  # Linked to Selectbox
+        vmin=v_min,       # Linked to Slider 1
+        vmax=v_max        # Linked to Slider 2
+    )
+
+    # Styling the axes to match the Neon theme
+    ax.tick_params(colors='#c6c6c6ff')
+    ax.xaxis.label.set_color('#c6c6c6ff')
+    ax.yaxis.label.set_color('#c6c6c6ff')
+
+    # 1. Capture the colorbar object
+    cbar = plt.colorbar(img, ax=ax)
+
+    # Set the label text and color
+    cbar.set_label("Magnitude (dB)", color='#c6c6c6ff', fontsize=10)
+
+    # 2. Change the color of the tick labels (numbers)
+    cbar.ax.tick_params(colors='#c6c6c6ff')
+
+    # 3. Optional: Change the color of the colorbar outline/frame
+    cbar.outline.set_edgecolor('#c6c6c6ff')
+    st.pyplot(fig)
+
+    # --- DOWNLOAD PLOT ---
+    # Save the figure to a buffer
+    plot_buffer = BytesIO()
+    fig.savefig(plot_buffer, format='png',
+                facecolor=fig.get_facecolor(), dpi=300)
+    plot_buffer.seek(0)
+
     # Display Players
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("##### Original")
         st.audio(file_bytes)
+        # Spectrogram Download Button
+        st.download_button(
+            label="Download Spectrogram (PNG)",
+            data=plot_buffer,
+            file_name="genmfcc_spectrogram.png",
+            mime="image/png"
+        )
 
     with col2:
         st.markdown("##### Ghost Reconstruction")
         st.audio(ghost_buffer)
-        # The Download Button
+        # Audio Download Button
         st.download_button(
             label="Download Ghost Audio",
             data=ghost_buffer,
@@ -85,29 +165,6 @@ if uploaded_file:
             mime="audio/wav"
         )
 
-    # Display Visuals
-    st.divider()
-    st.markdown("##### MFCC Spectrogram")
-    # fig, ax = plt.subplots(figsize=(10, 4))
-    # img = librosa.display.specshow(mfccs, x_axis='time', sr=sr, ax=ax)
-    # plt.colorbar(img, ax=ax)
-    # st.pyplot(fig)
-
-    # Inside your plotting section
-    fig, ax = plt.subplots(figsize=(10, 4))
-    fig.patch.set_facecolor('#0d0221')  # Match app background
-    ax.set_facecolor('#0d0221')
-
-    # Using the 'magma' or 'plasma' colormap for a neon feel
-    img = librosa.display.specshow(
-        mfccs, x_axis='time', sr=sr, ax=ax, cmap='magma')
-
-    # Styling the text on the plot
-    ax.tick_params(colors='#00f3ff')
-    ax.xaxis.label.set_color('#00f3ff')
-    ax.yaxis.label.set_color('#00f3ff')
-    plt.colorbar(img, ax=ax)
-    st.pyplot(fig)
 
 else:
     st.info("Upload an audio file to start")
