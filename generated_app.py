@@ -6,11 +6,14 @@ import matplotlib.pyplot as plt
 import soundfile as sf
 from io import BytesIO
 
-st.set_page_config(page_title="Ghost Audio Generator", layout="wide")
+# --- PAGE SETUP ---
+st.set_page_config(page_title="Ghost Audio Lab", page_icon="👻")
 
-st.title("👻 Ghost Audio & MFCC Visualizer")
-st.markdown(
-    "Upload audio to see its MFCC 'fingerprint' and hear what the AI hears.")
+st.title("👻 Ghost Audio Lab")
+st.markdown("""
+Extract the **MFCC fingerprint** of your audio and reconstruct it using the **Griffin-Lim algorithm**. 
+The result is a 'ghostly' version containing only the vocal tract shapes and textures.
+""")
 
 # --- SIDEBAR CONTROLS ---
 st.sidebar.header("Settings")

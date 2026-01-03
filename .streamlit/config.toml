@@ -1,0 +1,15 @@
+[theme]
+# The primary accent color - used for sliders and active states
+primaryColor = "#ff8c00ff"
+
+# The background of the main content area
+backgroundColor = "#141414ff"
+
+# The background of the sidebar
+secondaryBackgroundColor = "#1a1a1aff"
+
+# The main text color
+textColor = "#ffe0d5ff"
+
+# The font style
+font = "monospace"

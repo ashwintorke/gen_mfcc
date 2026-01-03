@@ -10,9 +10,14 @@ import matplotlib.pyplot as plt
 import soundfile as sf
 
 # --- APP CONFIG ---
-st.set_page_config(page_title="Ghost Audio Lab", page_icon="👻")
+st.set_page_config(page_title="GenMFCC", page_icon="🟠")
 
-st.title("Audio to MFCC Converter")
+st.markdown("""
+    <h1 style='font-family: "Lucida Console", Monaco, monospace; font-size: 32px; color: orange;'>
+        GenMFCC
+    </h1>
+    """, unsafe_allow_html=True)
+
 st.markdown("""
 Extract the **MFCC fingerprint** of your audio and reconstruct it using the **Griffin-Lim algorithm**. 
 The result is a 'ghostly' version containing only the vocal tract shapes and textures.
@@ -66,11 +71,11 @@ if uploaded_file:
     # Display Players
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Original")
+        st.markdown("##### Original")
         st.audio(file_bytes)
 
     with col2:
-        st.subheader("Ghost Reconstruction")
+        st.markdown("##### Ghost Reconstruction")
         st.audio(ghost_buffer)
         # The Download Button
         st.download_button(
@@ -82,11 +87,27 @@ if uploaded_file:
 
     # Display Visuals
     st.divider()
-    st.subheader("Visual Fingerprint (MFCC)")
+    st.markdown("##### MFCC Spectrogram")
+    # fig, ax = plt.subplots(figsize=(10, 4))
+    # img = librosa.display.specshow(mfccs, x_axis='time', sr=sr, ax=ax)
+    # plt.colorbar(img, ax=ax)
+    # st.pyplot(fig)
+
+    # Inside your plotting section
     fig, ax = plt.subplots(figsize=(10, 4))
-    img = librosa.display.specshow(mfccs, x_axis='time', sr=sr, ax=ax)
+    fig.patch.set_facecolor('#0d0221')  # Match app background
+    ax.set_facecolor('#0d0221')
+
+    # Using the 'magma' or 'plasma' colormap for a neon feel
+    img = librosa.display.specshow(
+        mfccs, x_axis='time', sr=sr, ax=ax, cmap='magma')
+
+    # Styling the text on the plot
+    ax.tick_params(colors='#00f3ff')
+    ax.xaxis.label.set_color('#00f3ff')
+    ax.yaxis.label.set_color('#00f3ff')
     plt.colorbar(img, ax=ax)
     st.pyplot(fig)
 
 else:
-    st.info("👋 Upload an audio file in the sidebar or main window to start!")
+    st.info("Upload an audio file to start")
